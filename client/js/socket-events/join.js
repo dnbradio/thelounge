@@ -3,8 +3,14 @@
 import socket from "../socket";
 import store from "../store";
 import {switchToChannel} from "../router";
+const Helper = require("../../../src/helper.js");
 
 socket.on("join", function (data) {
+
+	if (Helper.config.restrict.enable && data.chan.match(Helper.config.restrict.pattern) === null) {
+		return;
+	}
+	
 	store.getters.initChannel(data.chan);
 
 	const network = store.getters.findNetwork(data.network);
