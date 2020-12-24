@@ -10,6 +10,7 @@ socket.on("join", function (data) {
 		store.state.settings.restrict.enable &&
 		data.chan.match(store.state.settings.restrict.pattern) === null
 	) {
+		console.log("lol no", store.state.settings.restrict.pattern);
 		return;
 	}
 
